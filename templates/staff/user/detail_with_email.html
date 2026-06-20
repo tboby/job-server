@@ -36,6 +36,15 @@
             {{ user.date_joined|date:"d F Y" }} at {{ user.date_joined|date:"H:i" }}
           {% /time %}
         {% /description_item %}
+
+        {% if user.roles|length > 0 %}
+          {% #description_item title="Roles" %}
+            {% for role in user.roles %}
+              {{ role.display_name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% /description_item %}
+        {% endif %}
+
       {% /description_list %}
     {% /card %}
     <form method="POST" class="flex flex-col gap-4">
